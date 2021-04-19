@@ -1,0 +1,12 @@
+{% extends 'staff/base.html' %}
+
+{% block title %}Staff Login{% endblock %}
+
+{% block body %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-block btn-primary">Login</button>
+</form>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'staff/base.html' %}
+
+{% block stylesheet %}
+<style>
+    table {
+        border-collapse: collapse;
+        
+    }
+    table,th,td {
+        border: 1px solid black;
+        text-align: center;
+    }
+    th,td {
+        padding: 5px;
+        
+    }
+    main-title{
+        margin-bottom: 3rem;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Attendee Details{% endblock %}
+{% block body %}
+<nav class="navbar navbar-light bg-light">
+    <a class="btn btn-outline-success" href="{% url 'logout' %}">Logout</a>
+    <a class="btn btn-outline-primary" href="{% url 'view_all' %}">View all</a>
+</nav>
+<div class="row justify-content-center main-title">
+    <h1>
+        Guest List
+    </h1>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form id="search" class="form-inline">
+            <div class="form-group mb-2">
+            <label for="entry_pass" class="mr-sm-2">Enter Entry Pass Number: </label>
+            <input type="search" name="entry_pass" id="entry_pass" class="form-control mr-sm-4">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" id="searchSubmit">Search</button>
+        </form>
+    </div>
+</div>
+<div class="row justify-content-center" style="margin-top: 3rem;">
+    <div>
+        <table style="border: 2px solid black;">
+            <thead>
+                <th>Name</th>
+                <th>Mobile Number</th>
+                <th>College</th>
+                <th>Email</th>
+                <th>Status</th>
+            </thead>
+            <tr id="detailDisplay" style="display: none;">
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    $('#search').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'search' %}",
+            data: $(this).serialize(),
+            success: function (json) {
+                $('#detailDisplay').show()
+                $('#detailDisplay').empty()
+                for (item in json.person) {
+                    if (item==='attended'){
+                        if (json.person[item]===false) {
+                            $('#detailDisplay').append(
+                                "<td id='tableAttend' class='btn-primary'><form id='formAttend'><input type='hidden' value="+json.person['id'] + " name='attend'><button type='submit' class='btn-primary'>Mark Attended</button></form></td>"
+                            );
+                        }
+                        else {
+                            $('#detailDisplay').append(
+                                "<td class='btn-success'>Attended</td>"
+                            )
+                        }
+                    }
+                    else if (item!='id' && item!='mail_sent' && item!='whatsapp_number') {
+                        $('#detailDisplay').append(
+                        "<td>" + json.person[item] + "</td>"
+                        );
+                    }
+                }
+            },
+            error: function(json) {
+                $('#detailDisplay').show()
+                $('#detailDisplay').empty()
+                $('#detailDisplay').append(
+                    "<td colspan='5'>Not Found</td>"
+                );
+            }
+        });
+    });
+    
+    $('#detailDisplay').on('submit','#formAttend',function(p) {
+        p.preventDefault();
+        var pk = $(this).find("input[name='attend']").val()
+        $.ajax({
+            type : "GET",
+            url : "{% url 'mark_attended' %}",
+            data :  {
+                'pk' : pk
+            },
+            success : function(json){
+                console.log(json);
+                const tdcol= document.getElementById('detailDisplay')
+                tdcol.removeChild(tdcol.lastChild);
+                $('#detailDisplay').append(
+                "<td class='btn btn-success'>Attended</td>"
+                );
+            },
+            error : function(json) {
+                console.log(json)
+            }
+        });
+    });
+</script>
+{% endblock %}

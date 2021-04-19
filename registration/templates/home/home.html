@@ -1,0 +1,320 @@
+﻿{% load static %}
+{% load mathfilters %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<!--[if lt IE 10]> <html  lang="en" class="iex"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<!-- Mirrored from templates.framework-y.com/fullpage/demos/full-page-event-music.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Jan 2020 13:58:54 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Order Fest</title>
+    <meta name="description" content="Multipurpose fullPage and fullscreen HTML5 and CSS3 template based on the alvarotrigo.com's plugin.">
+    <link rel="icon" href="{% static 'images/event/logo.png' %}">
+    <link rel="stylesheet" href="{% static 'js/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'js/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'js/jquery.fullPage.css' %}">
+    <link rel="stylesheet" href="{% static 'js/flexslider/flexslider.css' %}">
+    <link rel="stylesheet" href="{% static 'js/social.stream.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+    <link rel="stylesheet" href="{% static 'css/content-box.css' %}">
+    <link rel="stylesheet" href="{% static 'css/image-box.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skin.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="icon" href="{% static 'images/event/logo.png' %}">
+    <!-- Extra optional content header -->
+</head>
+<body>
+    <header class="bg-transparent menu-transparent white fixed-top" data-menu-anima="fade-left">
+        <div class="navbar navbar-default wide-area navbar-fixed-top" role="navigation">
+            <div class="navbar navbar-main">
+                <div class="container">
+                    <div class="navbar-header scroll-show">
+                        <button type="button" class="navbar-toggle">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand no-margins" href="https://www.thewriteorder.com/"><img src="{% static 'images/event/logo.png' %}" alt="logo" height="60vh"/></a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav over no-margins" id="fullpage-menu">
+                            <li class="active"><a>Home</a></li>
+                            <li><a>About</a></li>
+                            <li><a>Contacts</a></li>                        
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="fullpage-varrow white">
+        <div class="arrow down"><span></span><i class="fa fa-angle-down"></i></div>
+    </nav>
+    <div class="background-page overlay-container" style="background-image:url({% static 'images/event/hd-1.jpg' %});">
+    </div>
+    <div id="fullpage-main" data-options="verticalCentered:false" data-offset="0" data-horizonal-arrow-offset="-10">
+        <div class="section overlay-container white" style="background-image:url({% static 'images/3.jpg' %});">
+            <div class="container content box-middle text-center">
+                <img src="{% static 'images/event/nift.png' %}" alt="" height=70vh style="position: absolute; top: 60px; left: 0px;" ><img src="{% static 'images/event/logo.png' %}" alt="" height=300vh><img src="{% static 'images/event/spect.png' %}" alt="" height=70vh style="position: absolute; top: 60px; right: 0px;">
+                <hr class="space" />
+                <div class="row vertical-row">
+                    <div class="col-md-3 text-right hidden-sm" data-fullpage-anima="fade-left">
+                        <a href="#section-1" class="circle-button btn btn-sm">Event overview</a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="countdown countdown-3 text-l" data-time="03/1/2020 10:30:00" data-utc-offset="-5">
+                            <div>
+                                <span class="days countdown-values text-xl">00</span><br /><span class="countdown-label">Days</span>
+                            </div>
+                            <div>
+                                <span class="hours countdown-values text-xl">00</span><br /><span class="countdown-label">Hours</span>
+                            </div>
+                            <div>
+                                <span class="minutes countdown-values text-xl">00</span><br /><span class="countdown-label">Mins</span>
+                            </div>
+                            <div>
+                                <span class="seconds countdown-values text-xl">00</span><br /><span class="countdown-label">Secs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-left hidden-sm" data-fullpage-anima="fade-right">
+                        <a href="#section-2"  class="circle-button btn btn-sm">Register</a>
+                    </div>
+                </div>
+                <div>
+                    {% if count.seats_available %}
+                    <span class="badge badge-primary" style="font-size: 3rem;">
+                        Seats Left : 
+                    </span>
+                    <span class="badge badge-info" style="font-size: 3rem;">
+                        {{ 2000|sub:count.counter }}
+                    </span>
+                    {% else %}
+                    <span class="badge badge-danger" style="font-size: 2.5rem;">
+                        All seats booked
+                    </span>
+                    {% endif %}
+                </div>
+            </div> 
+        </div>
+
+        <div class="section overlay-container">
+            <div class="container content box-middle white">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h1 style="color: #54a4e2;"><b>ABOUT US</b></h1>
+                        <hr class="space s" />
+                        <p class="block-quote quote-1">
+                            The first edition of The Order Fest is happening in NIFT Bhubaneswar's annual college fest- Spectrum 2020. We're calling in Campus Sunburn wherein EDM artist Danika Violin will be enthralling the crowd on 1st March 2020.
+                        </p>
+                        <p>
+                            There are only 2000 slots available and we know you won't believe your eyes but the registration for attending The Order Fest is FREE! A first-come-first-serve basis is being followed for registering attendants so hurry up and register ASAP!
+                        </p> 
+                    </div>
+                    <div class="col-md-8">
+                        <hr class="space l visible-sm" />
+                        <div class="flexslider carousel white" data-options="minWidth:250,itemMargin:10,numItems:2,controlNav:true,directionNav:true">
+                            <ul class="slides">
+                                <li>
+                                    <div class="advs-box niche-box-blog">
+                                        <div class="block-top">
+                                            <div class="block-title">
+                                                <h2><a href="#">DJ Danika Violin</a></h2>
+                                                <div class="tag-row">
+                                                    <span><i class="fa fa-bookmark"></i> <a href="#">Music</a>, <a href="#">DJ</a>, <a href="#">Instruments</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a class="img-box img-scale-rotate" href="#" style="max-height: 50vh;">
+                                            <img src="{% static '/images/event/1.jpg' %}" alt="" style="height: 80%;">
+                                        </a>
+                                        <p class="excerpt">
+                                            DJ Seezi is India’s youngest female trap and bass DJ/Producer. She has performed in over 30 college fests all over the world!
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="advs-box niche-box-blog">
+                                        <div class="block-top">
+                                            <div class="block-title">
+                                                <h2><a href="#">Opening Act</a></h2>
+                                                <div class="tag-row">
+                                                    <span><i class="fa fa-bookmark"></i> <a href="#">Music</a>, <a href="#">Band</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a class="img-box img-scale-rotate" href="#" style="max-height: 50vh;">
+                                            <img src="{% static 'images/event/2.jpg' %}" alt="">
+                                        </a>
+                                        <p class="excerpt">
+                                            Bunny Mohanty and Suparna Mukherjee will be opening for DJ Seezi with a mix of Hollywood and Bollywood music to set the crowd grooving!                                        
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section overlay-container" style=" background-image:url({% static 'images/event/3.jpg' %}); height: 100%;" style="height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;">
+            <div class="container content box-middle white">
+                <div class="row" data-fullpage-anima="fade-left">
+                    
+                    <div class="col-md-5" data-fullpage-anima="fade-left" data-timeline="asc" style="background-color: rgba(102, 102, 102, 0.384);">
+                        <hr class="space xs" />
+                        <div style="font-size: 2rem;">For organising in your college contact:</div>
+                        <ul class="fa-ul text-s center-xs" style="font-family: 'Droid Serif', cursive;">
+                            <li><i class="fa-li im-map-marker"></i>Plot no. 108/b
+                                2nd floor Janpat,
+                                Unit-3 Bhubaneswar
+                                Khordha Odisha 751001</li>
+                            <li><i class="fa-li im-envelope"></i> <a href="mailto:contact@thewriteorder.com">contact@thewriteorder.com</a></li>
+                            <li><i class="fa-li im-phone-2"></i> +91 7980208231</li>
+                        </ul>
+                        <hr class="space m" />
+                        <h1 style="color: #54a4e2;"><b>REGISTER</b></h1>
+                        {% if count.seats_available %}
+                        <form class="form-box" method="post" id="registrationForm">
+                            {% csrf_token %}
+                            <div id="errorDiv" class="row"></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="name">Name</label>
+                                    {% render_field form.name id+="name" placeholder="Your name" type="text" class+="form-control form-value" %}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email">Email</label>
+                                    {% render_field form.email id+="email" placeholder="Your email" type="email" class+="form-control form-value" %}
+                                        <span id="emailExists" class="badge badge-danger" style="display: none;">
+                                            This email exists already
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="mobile">Mobile No.</label>
+                                    {% render_field form.mobile_number id+="mobile" placeholder="Your calling number" type="text" class+="form-control form-value" %}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="whatsapp">WhatsApp No.</label>
+                                    {% render_field form.whatsapp_number id+="whatsapp" placeholder="Your WhatsApp number" type="text" class+="form-control form-value" %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label for="college">College Name</label>
+                                    {% render_field form.college id+="college" placeholder="Your college name" class+="form-control form-value" %}
+                                </div>
+                                <div class="col-md-4" style="margin-top: 4rem;">
+                                    <button class="circle-button btn-xs btn" type="submit">Register</button> 
+                                </div>                            
+                            </div>
+                        </form>
+                        <hr class="space s" />
+                        <div id="successSubmit" class="success-box" style="display: none;">
+                            <div class="alert alert-success">Your registration has been initiated. <br>You’ll be able to attend the concert only if you received a code in your email id, so keep checking it!<br> Good luck!</div>
+                        </div>
+                        <div id="errorSubmit" class="error-box" style="display: none;">
+                            <div class="alert alert-warning">Error, please retry. Your registeration failed</div>
+                        </div>
+                        {% else %}
+                        <div id="seatsFull" class="col-md-12 text-center" data-fullpage-anima="fade-left" data-timeline="asc" style="background-color: rgba(109, 7, 7, 0.671); float: right; padding: 5rem; font-size: 3rem;">
+                            BETTER LUCK NEXT TIME! All seats full. 
+                        </div>
+                        {% endif %}
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <footer class="footer-base section fp-auto-height">
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 footer-left">
+                            <img class="row-8" src="{% static 'images/event/logo.png' %}" alt="" />
+                            <hr class="space s" />
+                        </div>
+                        <div class="col-md-4 footer-center text-center">
+                            <p>
+                                The Order Fest is a brand which partners up with colleges by bringing unique artists to them, handling their social nights entirely and pulling off the most exciting fests.
+                            </p>
+                            <hr class="space xs" />
+                            <div class="btn-group social-group btn-group-icons text-center">
+                                <a target="_blank" href="https://www.instagram.com/thewriteorder/" ><i class="fa fa-instagram" style="font-size: 5rem;"></i></a> 
+                            </div>
+                            <hr class="space s" /> Also see:
+                            <a href="https://theorderfest.com/team" style="color: #54a4e2; font-size: large;"><u>Our Expertised TEAM</u></a>
+                        </div>
+                        <div class="col-md-4 footer-right text-left">
+                            <p>
+                                Address: <b> Plot no. 108/b
+                                    2nd floor Janpat,
+                                    Unit-3 Bhubaneswar
+                                    Khordha Odisha 751001</b><br/><br>
+                                e-mail: <b> contact@thewriteorder.com</b><br /><br>
+                                phone: <b> (+91) 7980208231</b>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row copy-row">
+                    <div class="col-md-12 copy-text">
+                        © Copyright 2020 <a href="https://www.thewriteorder.com/">The Write Order</a>. All Right Reserved. 
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <footer class="footer-base">
+        <link rel="stylesheet" href="{% static 'js/iconsmind/solid-icons.min.css' %}">
+        <script src="{% static 'js/imagesloaded.min.js' %}"></script>
+        <script async src="{% static 'js/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap/js/bootstrap.popover.min.js' %}"></script>
+        <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'js/flexslider/jquery.flexslider-min.js' %}"></script>
+        <script src="{% static 'js/jquery.fullPage.min.js' %}"></script>
+        <script src="{% static 'js/jquery.progress-counter.js' %}"></script>
+        <script src="{% static 'js/jquery.twbsPagination.min.js' %}"></script>
+        <script src="{% static 'js/social.stream.min.js' %}"></script>
+        <script src="{% static 'js/isotope.min.js' %}"></script>
+        <script src="{% static 'js/jquery.tab-accordion.js' %}"></script>
+        <script>
+            $('#registrationForm').on('submit',function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'registration' %}",
+                    data: $(this).serialize(),
+                    success: function(json){
+                        $('#registrationForm').hide();
+                        $('#errorSubmit').hide();
+                        $('#successSubmit').show();
+                    },
+                    error: function(json){
+                        console.log(json);
+                        if (json.responseJSON['exists'])
+                            $('#emailExists').show()
+                        else if (!json.responseJSON['seats']) {
+                            $('#registrationForm').hide();
+                            $('#seatsFull').show();
+                        }
+                        else if(json.responseJSON['number'])
+                            alert("Please enter correct Mobile/Whatsapp Number or Email Address")
+                        else
+                            $('#errorSubmit').show();
+                    }
+                });
+            });
+        </script>
+    </footer>
+</body>
+
+</html>

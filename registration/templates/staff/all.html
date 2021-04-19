@@ -1,0 +1,60 @@
+{% extends 'staff/base.html' %}
+
+{% block stylesheet %}
+<style>
+    table {
+        border-collapse: collapse;
+        
+    }
+    table,th,td {
+        border: 1px solid black;
+        text-align: center;
+    }
+    th,td {
+        padding: 5px;
+        
+    }
+    main-title{
+        margin-bottom: 3rem;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Attendee Details{% endblock %}
+{% block body %}
+<nav class="navbar navbar-light bg-light">
+    <a class="btn btn-outline-success" href="{% url 'logout' %}">Logout</a>
+    <a class="btn btn-outline-primary" href="{% url 'view' %}">Search</a>
+</nav>
+<div class="row justify-content-center main-title">
+    <h1>
+        Guest List
+    </h1>
+</div>
+<div class="row justify-content-center" style="margin-top: 3rem;">
+    <div>
+        <table style="border: 2px solid black;">
+            <thead>
+                <th>Name</th>
+                <th>Mobile Number</th>
+                <th>Email</th>
+                <th>Pass Number</th>
+                <th>Status</th>
+            </thead>
+                {% for item in queryset %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.mobile_number }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.entry_pass }}</td>
+                    {% if item.attended %}
+                        <td class="btn-success">Attended</td>
+                    {% else %}
+                        <td class="btn-primary">Not Attended</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
